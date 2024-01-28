@@ -88,8 +88,8 @@ class Stat {
         } else if (count[val] === maxCount) {
           mode.push(val);
         }
-        return mode;
       }
+      return mode;
     } else {
       let max = Math.max(...this.freq);
       let modes = this.freq
@@ -212,7 +212,7 @@ class Stat {
   }
 }
 
-// // let df = new Stat([25, 30, 35, 40, 45, 50, 55, 60, 65, 70]);
+let df = new Stat([25, 30, 35, 40, 45, 50, 55, 60, 65, 70]);
 // let df = new Stat(
 //   [],
 //   [
@@ -225,10 +225,12 @@ class Stat {
 //   [3, 5, 8, 6, 4],
 //   true
 // );
-// // console.log(df);
+// let df = new Stat([10, 15, 20, 25, 25, 28, 30, 30, 30, 32, 35, 40, 45]);
+// let df = new Stat([], [[10,20],[20,30],[30,40],[40,50]], [5,10,15,20], true);
+// console.log(df);
 // console.log(df.mean());
 // console.log(df.median());
-// console.log(df.mode()); //error
+console.log(df.mode()); //error
 // console.log(df.range());
 // console.log(df.quartileDevaition());
 // console.log(df.meanDeviation());
