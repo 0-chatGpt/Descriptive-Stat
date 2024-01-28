@@ -73,7 +73,21 @@ class Stat {
 
   mode() {
     if (!this.grouped) {
-      //Calculate mode of ungrouped population.
+      let count = {};
+      this.dataset.forEach((val) => {
+        count[val] = (count[val] || 0) + 1;
+      });
+      let mode = [];
+      let maxCount = 0;
+      for (val in count) {
+        if (count[val] > maxCount) {
+          mode = [val];
+          maxCount = count[val];
+        } else if (count[val] === maxCount) {
+          mode.push(val);
+        }
+        return mode;
+      }
     } else {
       let max = Math.max(this.freq);
       let modes = freq
@@ -102,7 +116,7 @@ class Stat {
         return (val - mean) ** 2;
       });
       return (
-        (1 / (this.dataset.length - 1)) *
+        (1 / this.dataset.length) *
         sqr_diff.reduce((acc, val) => (acc += val), 0)
       );
     } else {
@@ -111,7 +125,7 @@ class Stat {
         (val) => ((val[0] + val[1]) / 2 - mean) ** 2
       );
       return (
-        (1 / (sum_f_i - 1)) *
+        (1 / sum_f_i) *
         this.freq
           .map((val, i) => {
             return val * sqr_diff_gr[i];
